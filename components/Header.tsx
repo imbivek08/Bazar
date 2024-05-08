@@ -1,7 +1,8 @@
-import { link } from "fs";
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 import { BsCartPlus } from "react-icons/bs";
 import { IoSearch } from "react-icons/io5";
 
@@ -20,6 +21,11 @@ const items = [
 ];
 
 const Header = () => {
+  const [query, setQuery] = useState<string>("");
+  const router = useRouter();
+  const searchhandler = () => {
+    router.push(`/search/${query}`);
+  };
   return (
     <>
       <div className="bg-[#131921] text-white h-15 py-2">
@@ -34,12 +40,14 @@ const Header = () => {
           </div>
           <div className="w-[60%] flex items-center">
             <input
-              className="w-full h-9 rounded-lg"
+              className="w-full h-9 rounded-lg focus:outline-none text-black"
               type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
               placeholder="Search in Bazaar"
             />
             <div className="flex items-center justify-center h-9 w-11 bg-[#F3A847] relative right-5 rounded-r-lg">
-              <IoSearch />
+              <IoSearch onClick={searchhandler} />
             </div>
           </div>
           <div className="flex gap-5 items-center w-[20%]">
