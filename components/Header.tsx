@@ -46,7 +46,7 @@ const Header = () => {
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search in Bazaar"
             />
-            <div className="flex items-center justify-center h-9 w-11 bg-[#F3A847] relative right-5 rounded-r-lg">
+            <div className="flex items-center justify-center h-9 w-11 bg-[#F3A847] relative right-5 rounded-r-lg cursor-pointer">
               <IoSearch onClick={searchhandler} />
             </div>
           </div>

@@ -1,18 +1,21 @@
 "use client";
+import SearchResult from "@/components/SearchResult";
 import { useSupabae } from "@/lib/supabase/hooks/useSupabase";
-import { log } from "console";
 import { useParams } from "next/navigation";
 import React, { useEffect } from "react";
 
 const Page = () => {
   const { query } = useParams();
-  const { products, getData } = useSupabae();
+  const { products, getData, getFilteredData, filterData } = useSupabae();
   useEffect(() => {
-    getData();
+    getFilteredData(query.toString());
   }, []);
-  //console.log(products);
 
-  return <div>{query}</div>;
+  return (
+    <div>
+      <SearchResult data={filterData} />
+    </div>
+  );
 };
 
 export default Page;
