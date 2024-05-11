@@ -25,7 +25,7 @@ const SingleProduct = ({ data }: { data: any }) => {
         <h1 className=" text-lg font-bold">{`$${product?.price}`}</h1>
       </div>
       <div>
-        <AddToCartContainer price={product?.price} />
+        <AddToCartContainer product={product} />
       </div>
     </div>
   );

@@ -1,10 +1,12 @@
 "use client";
+import { selectCount } from "@/redux/features/cartSlice";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { BsCartPlus } from "react-icons/bs";
 import { IoSearch } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 const items = [
   "All",
@@ -23,6 +25,7 @@ const items = [
 const Header = () => {
   const [query, setQuery] = useState<string>("");
   const router = useRouter();
+  const cart = useSelector(selectCount);
   const searchhandler = () => {
     router.push(`/search/${query}`);
   };
@@ -60,7 +63,7 @@ const Header = () => {
               <h1 className="font-medium text-sm">Orders</h1>
             </div>
             <div className="pb-4">
-              <p className="relative top-2 left-2.5">0</p>
+              <p className="relative top-2 left-2.5">{cart.length}</p>
               <div className="flex">
                 <BsCartPlus size={35} />
                 <h1 className="font-medium text-sm mt-2">Cart</h1>
