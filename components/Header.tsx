@@ -39,6 +39,8 @@ const Header = () => {
               height={140}
               width={140}
               alt=""
+              onClick={() => router.push("/")}
+              className="cursor-pointer"
             />
           </div>
           <div className="w-[60%] flex items-center">
@@ -65,7 +67,11 @@ const Header = () => {
             <div className="pb-4">
               <p className="relative top-2 left-2.5">{cart.length}</p>
               <div className="flex">
-                <BsCartPlus size={35} />
+                <BsCartPlus
+                  className="cursor-pointer"
+                  size={35}
+                  onClick={() => router.push("/cart")}
+                />
                 <h1 className="font-medium text-sm mt-2">Cart</h1>
               </div>
             </div>
