@@ -1,8 +1,11 @@
 "use client";
+import { removeFromCart } from "@/redux/features/cartSlice";
 import Image from "next/image";
 import React from "react";
+import { useDispatch } from "react-redux";
 
 const CartItem = ({ cartitem }: { cartitem: any }) => {
+  const dispatch = useDispatch();
   return (
     <div className="flex mt-5">
       <div className="h-[150px] w-[200px]">
@@ -24,7 +27,23 @@ const CartItem = ({ cartitem }: { cartitem: any }) => {
             <span className="text-[#007185] cursor-pointer">Learn more</span>
           </p>
         </div>
-        <h1 className="text-[#CC0C39] cursor-pointer ">REMOVE</h1>
+        <h1
+          className="text-[#CC0C39] cursor-pointer "
+          onClick={() => dispatch(removeFromCart(cartitem.id))}
+        >
+          REMOVE
+        </h1>
+        <div className="cursor-pointer">
+          <button className="w-[45px] h-[45px] shadow-inner bg-[#F0EEF2]">
+            +
+          </button>
+          <button className="w-[45px] h-[45px] shadow-inner bg-[#F0EEF2]">
+            0
+          </button>
+          <button className="w-[45px] h-[45px] shadow-inner bg-[#F0EEF2]">
+            -
+          </button>
+        </div>
       </div>
       <div className="">
         <h3 className="font-bold">{`$${cartitem?.price}`}</h3>
