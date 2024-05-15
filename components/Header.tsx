@@ -57,7 +57,9 @@ const Header = () => {
           </div>
           <div className="flex gap-5 items-center w-[20%]">
             <div>
-              <h1 className="text-xs">Hello Bivek</h1>
+              <h1 className="text-xs" onClick={() => router.push("/signin")}>
+                Signin
+              </h1>
               <h1 className="font-medium text-sm">Accounts&lists</h1>
             </div>
             <div>
