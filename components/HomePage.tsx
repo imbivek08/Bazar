@@ -11,7 +11,6 @@ const HomePage = () => {
     getMensProduct();
     getWomenProduct();
   }, []);
-  console.log(mensProduct);
   return (
     <div>
       <div className="w-[80%] mx-auto relative">
@@ -20,14 +19,14 @@ const HomePage = () => {
         </div>
         <div className="grid grid-cols-4 gap-x-8 ml-5 absolute bottom-0  h-[370px] ">
           {mensProduct.map((item: any) => {
-            return <CategoryWise product={item} key={item.key} />;
+            return <CategoryWise product={item} key={item.id} />;
           })}
         </div>
       </div>
       <div className="pt-[150px] w-[80%] mx-auto">
         <div className="grid grid-cols-4 gap-x-4 gap-y-10 ml-5">
           {womensProduct.map((item: any) => {
-            return <CategoryWise product={item} key={item.key} />;
+            return <CategoryWise product={item} key={item.id} />;
           })}
         </div>
       </div>

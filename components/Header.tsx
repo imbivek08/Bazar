@@ -3,10 +3,11 @@ import { selectCount } from "@/redux/features/cartSlice";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { BsCartPlus } from "react-icons/bs";
 import { IoSearch } from "react-icons/io5";
 import { useSelector } from "react-redux";
+import { supabase } from "@/lib/supabase/products";
 
 const items = [
   "All",
@@ -26,9 +27,20 @@ const Header = () => {
   const [query, setQuery] = useState<string>("");
   const router = useRouter();
   const cart = useSelector(selectCount);
+  const [user, setUser] = useState<any>(null);
   const searchhandler = () => {
     router.push(`/search/${query}`);
   };
+  useEffect(() => {
+    const getUser = async () => {
+      let { data } = await supabase.auth.getUser();
+      console.log(data);
+      setUser(data);
+    };
+    getUser();
+  }, []);
+  console.log(user.user.email);
+
   return (
     <>
       <div className="bg-[#131921] text-white h-15 py-2">
@@ -57,9 +69,9 @@ const Header = () => {
           </div>
           <div className="flex gap-5 items-center w-[20%]">
             <div>
-              <h1 className="text-xs" onClick={() => router.push("/signin")}>
-                Signin
-              </h1>
+              <div className="text-xs" onClick={() => router.push("/signin")}>
+                {user ? <p>{user.user.email}</p> : <p>Login</p>}
+              </div>
               <h1 className="font-medium text-sm">Accounts&lists</h1>
             </div>
             <div>
